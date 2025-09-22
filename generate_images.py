@@ -5,7 +5,7 @@ import matplotlib.patches as patches
 import matplotlib.pyplot as plt
 
 
-def draw_colored_boxes(colors):
+def draw_reminder(colors):
     """
     Draws up to 5 rounded rectangles in a row.
     Fills the first N boxes with the given colors (as circles),
@@ -44,7 +44,7 @@ def draw_colored_boxes(colors):
     plt.close()
 
 # Example usage:
-# draw_colored_boxes(["pink", "red", "orange"])
+# draw_reminder(["pink", "red", "orange"])
 
 NUM_TRIALS = 5
 contrasts = [("blue", "yellow"),
@@ -57,4 +57,4 @@ for contrast in contrasts:
         spec = list(product(contrast, repeat=length))
         # print(spec)
         for seq in spec:
-            draw_colored_boxes(seq)
+            draw_reminder(seq)
