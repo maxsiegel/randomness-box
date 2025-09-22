@@ -1,0 +1,56 @@
+.drawing-canvas {
+    border: 2px solid black;
+    cursor: crosshair;
+    margin: 20px auto;
+    display: block;
+}
+
+.marble-display {
+    margin: 20px auto;
+    display: block;
+    border: 1px solid #ccc;
+}
+
+.choice-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.choice-buttons button {
+    font-size: 18px;
+    padding: 10px 30px;
+    margin: 0 10px;
+    border: 2px solid;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.red-button {
+    background-color: #ffcccc;
+    border-color: red;
+}
+
+.green-button {
+    background-color: #ccffcc;
+    border-color: black;
+}
+
+.results {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+#jspsych-html-button-response-btngroup {
+    display: flex;
+    justify-content: center; /* center horizontally */
+    gap: 100px;              /* space between buttons */
+}
+#jspsych-html-button-response-btngroup img {
+    width: 120px;   /* or height: 80px */
+    height: auto;  /* keeps aspect ratio */
+}
+
+video {
+    display: block;
+    margin: 0 auto;  /* centers horizontally */
+}
