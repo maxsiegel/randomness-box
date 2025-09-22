@@ -1,4 +1,5 @@
 from itertools import product
+from os.path import join
 
 import matplotlib.patches as patches
 import matplotlib.pyplot as plt
@@ -39,18 +40,21 @@ def draw_colored_boxes(colors):
                                     facecolor=colors[i], edgecolor="black")
             ax.add_patch(circle)
 
-    plt.show()
-
+    plt.savefig(join("images", "_".join(colors) + ".png"))
+    plt.close()
 
 # Example usage:
 # draw_colored_boxes(["pink", "red", "orange"])
 
 NUM_TRIALS = 5
 contrasts = [("blue", "yellow"),
-             ("green", "red")]
+             ("green", "red"),
+             ("red", "pink"),
+             ("orange", "purple")]
 
 for contrast in contrasts:
     for length in range(1, NUM_TRIALS + 1):
-        seed = [contrast for _ in range(length)]
-        spec = list(product(*seed))
-        print(spec)
+        spec = list(product(contrast, repeat=length))
+        # print(spec)
+        for seq in spec:
+            draw_colored_boxes(seq)
