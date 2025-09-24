@@ -1,24 +1,27 @@
 const jsPsych = initJsPsych({
-    override_safe_mode: true,
-    on_finish: function() {
-        jsPsych.data.displayData();
-    }
+    // override_safe_mode: true,
+    // on_finish: function() {
+    //     jsPsych.data.displayData();
+    // }
 });
 
 
-colors = ['blue', 'yellow']
+var colors = ['blue', 'yellow']
+
+var current_picks;
+var image_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/"
 
 function reminder_function() {
-    current_picks = jsPsych.data
+    let current_picks = jsPsych.data
         .get()
         .select('response')
         .values
         .map((x => colors[x]))
 
     if (current_picks.length > 0) {
-        return ('images/' + current_picks.join('_') + '.png')
+        return (image_base_path + current_picks.join('_') + '.png')
     } else {
-        return 'images/background_only.png'
+        return image_base_path + 'background_only.png'
     }
 }
 
