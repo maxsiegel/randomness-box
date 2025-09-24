@@ -43,7 +43,7 @@ var image_above_video = {
     stimulus: stimulus_function,
     choices: colors,
     button_html: function(choice, choice_index) {
-        return (`<button class="jspsych-btn"><img src="images/one_${choice}_marble.png"></button>`);
+        return (`<button class="jspsych-btn"><img src=${image_base_path} + "one_${choice}_marble.png"></button>`);
     }
 };
 
