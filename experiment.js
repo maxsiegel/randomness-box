@@ -1,12 +1,13 @@
 const jsPsych = initJsPsych({
     // override_safe_mode: true,
-    // on_finish: function() {
-    //     jsPsych.data.displayData();
-    // }
+    on_finish: function() {
+        jsPsych.data.displayData();
+    }
 });
 
 
 var colors = ['blue', 'yellow']
+colors = jsPsych.randomization.shuffle(colors);
 
 var current_picks;
 var image_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/"
@@ -43,8 +44,9 @@ var image_above_video = {
     stimulus: stimulus_function,
     choices: colors,
     button_html: function(choice, choice_index) {
-        return (`<button class="jspsych-btn"><img src=${image_base_path} + "one_${choice}_marble.png"></button>`);
-    }
+        return (`<button class="jspsych-btn"><img src="${image_base_path}one_${choice}_marble.png"}></button>`);
+    },
+
 };
 
 const timeline = [
