@@ -2,9 +2,11 @@ const jsPsych = initJsPsych({
     // override_safe_mode: true,
     on_finish: function() {
         jsPsych.data.displayData();
+    },
+    on_trial_finish: function(data) {
+        data.color_layout = colors
     }
 });
-
 
 var colors = ['blue', 'yellow']
 colors = jsPsych.randomization.shuffle(colors);
@@ -46,7 +48,9 @@ var image_above_video = {
     button_html: function(choice, choice_index) {
         return (`<button class="jspsych-btn"><img src="${image_base_path}one_${choice}_marble.png"}></button>`);
     },
-
+    on_finish: function(data) {
+        data.response_label = colors[data.response]
+    }
 };
 
 const timeline = [
