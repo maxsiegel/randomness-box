@@ -2,6 +2,8 @@ const jsPsych = initJsPsych();
 
 let timeline = [];
 
+var ALLOW_SKIPS = true;
+
 if (false) {
     const video_config = {
         type: chsRecord.VideoConfigPlugin
@@ -104,7 +106,7 @@ function create_video_image_trial(sequence_type, video_url) {
         on_finish: function(data) {
             data.sequence_type = sequence_type
             data.response_label = colors[data.response]
-            data.color_layout = colors
+            data.response_layout = colors
         }
     }
 
@@ -116,7 +118,7 @@ const Intro = [{
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie1_Intro.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }, ];
 timeline = timeline.concat(Intro);
@@ -126,7 +128,7 @@ const coin_demo = {
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie2_Coin_demo.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }
 timeline.push(coin_demo)
@@ -149,7 +151,7 @@ const greatjob_coin = {
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_1.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }
 timeline.push(greatjob_coin)
@@ -159,7 +161,7 @@ const marble_demo = {
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie4_Marble_demo.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }
 timeline.push(marble_demo)
@@ -169,7 +171,7 @@ const marble_demo2 = {
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie5_Marble_demo2.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }
 timeline.push(marble_demo2)
@@ -193,7 +195,7 @@ const great_job_marbles = {
     choices: ["Next"],
     width: "1024",
 
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }
 timeline.push(great_job_marbles)
@@ -203,12 +205,13 @@ const spinner_demo = {
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie7_Spinner_demo.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }
 timeline.push(spinner_demo)
 
-const spinner_videos = ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_1.mp4',
+const spinner_videos = [
+    'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_1.mp4',
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_2.mp4',
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_3.mp4',
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_4.mp4',
@@ -225,19 +228,21 @@ const greatjob_spinner = {
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GoodJob_3.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }
 
-timeline = timeline.concat(greatjob_spinner);
+timeline.push(greatjob_spinner);
 
+const inclusion1_boxes = ["images/brownbox_8_yellow.png", "images/greenbox_3_bluepink.png"]
+const inclusion1_test_choices = jsPsych.randomization.shuffle(inclusion1_boxes)
 
 const Inclusion1 = [{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie9_Inclusionintro_1.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -245,7 +250,7 @@ const Inclusion1 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie10_Inclusion1a_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -253,46 +258,52 @@ const Inclusion1 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
-
     {
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie11_Inclusion1b_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
-        type: jsPsychVideoButtonResponse,
-        stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie11_Inclusion1_test.mp4'],
-        choices: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/orange_button.png", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/purple_button.png"],
+        type: jsPsychAudioButtonResponse,
+        // stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie11_Inclusion1_test.mp4'],
+        stimulus: ['audio/Audio11_Inclusion1_test.wav'],
+        choices: inclusion1_test_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         margin_vertical: '-10px',
-        margin_horizontal: '200px'
+        margin_horizontal: '200px',
+        on_finish: function(data) {
+            data.response_label = inclusion1_test_choices[data.response]
+            data.response_layout = inclusion1_test_choices
+        }
+
     },
     {
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
 ];
 timeline = timeline.concat(Inclusion1);
 
-
+const inclusion2_boxes = ["images/bluebox_3_purpleyellow.png", "images/redbox_8_green.png"]
+const inclusion2_test_choices = jsPsych.randomization.shuffle(inclusion2_boxes)
 const Inclusion2 = [{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie12_Inclusionintro_2.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -300,7 +311,7 @@ const Inclusion2 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie13_Inclusion2a_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -308,7 +319,7 @@ const Inclusion2 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -316,25 +327,32 @@ const Inclusion2 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie14_Inclusion2b_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
-        type: jsPsychVideoButtonResponse,
-        stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie14_Inclusion2_test.mp4'],
-        choices: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/orange_button.png", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/purple_button.png"],
+        type: jsPsychAudioButtonResponse,
+        // stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie14_Inclusion2_test.mp4'],
+        stimulus: ['audio/Audio14_Inclusion2_test.wav'],
+        // choices: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/orange_button.png", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/purple_button.png"],
+        choices: inclusion2_test_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         margin_vertical: '-10px',
-        margin_horizontal: '200px'
+        margin_horizontal: '200px',
+        on_finish: function(data) {
+            data.response_label = inclusion2_test_choices[data.response]
+            data.response_layout = inclusion2_test_choices
+        }
+
     },
     {
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -342,19 +360,22 @@ const Inclusion2 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_4.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
 
 ];
 timeline = timeline.concat(Inclusion2);
 
+const test1_boxes = ["images/greenbox_8_bluered_alternating.png", "images/brownbox_8_greenpink_alternating.png"]
+const test1_choices = jsPsych.randomization.shuffle(test1_boxes)
+
 const Test1 = [{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie15_Test1_Intro.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -362,7 +383,7 @@ const Test1 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie16_Test1a_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -370,7 +391,7 @@ const Test1 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -378,25 +399,29 @@ const Test1 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie17_Test1b_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
         type: jsPsychVideoButtonResponse,
-        stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie17_test_Test1.mp4'],
-        choices: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/orange_button.png", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/purple_button.png"],
+        stimulus: ['audio/Audio17_test_Test1.m4a'],
+        choices: test1_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         margin_vertical: '-10px',
-        margin_horizontal: '200px'
+        margin_horizontal: '200px',
+        on_finish: function(data) {
+            data.response_label = test1_choices[data.response]
+            data.response_layout = test1_choices
+        }
     },
     {
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -404,20 +429,22 @@ const Test1 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_5.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
 
 ];
 timeline = timeline.concat(Test1);
 
+const test2_boxes = ["images/bluebox_8_purpleorange_alternating.png", "images/redbox_8_blueyellow_alternating.png"]
+const test2_choices = jsPsych.randomization.shuffle(test2_boxes)
 
 const Test2 = [{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie18_Test2_Intro.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -425,7 +452,7 @@ const Test2 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie19_Test2a_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -433,7 +460,7 @@ const Test2 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -441,18 +468,22 @@ const Test2 = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie20_Test2b_videos.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
-        type: jsPsychVideoButtonResponse,
-        stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie21_test_Test2.mp4'],
-        choices: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/orange_button.png", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/purple_button.png"],
+        type: jsPsychAudioButtonResponse,
+        stimulus: ['audio/Audio21_test_Test2.wav'],
+        choices: test2_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         margin_vertical: '-10px',
-        margin_horizontal: '200px'
+        margin_horizontal: '200px',
+        on_finish: function(data) {
+            data.response_label = test2_choices[data.response]
+            data.response_layout = test2_choices
+        }
     },
 ];
 timeline = timeline.concat(Test2);
@@ -462,7 +493,7 @@ const Exploration = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Exploration.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
     {
@@ -470,7 +501,7 @@ const Exploration = [{
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_6.mp4'],
         choices: ["Next"],
         width: "1024",
-        response_allowed_while_playing: false,
+        response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
 ];
@@ -482,7 +513,7 @@ const End = [{
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/End.mp4'],
     choices: ["Next"],
     width: "1024",
-    response_allowed_while_playing: false,
+    response_allowed_while_playing: ALLOW_SKIPS,
     button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
 }, ];
 timeline = timeline.concat(End);
