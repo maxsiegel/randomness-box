@@ -2,7 +2,6 @@ const jsPsych = initJsPsych();
 
 let timeline = [];
 
-const audio_url_base = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/audio/"
 var ALLOW_SKIPS = true;
 
 if (false) {
@@ -65,9 +64,10 @@ var task_colors = {
 }
 
 function create_video_image_trial(sequence_type, video_url) {
-    var image_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/"
+    const image_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/"
+    const audio_url_base = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/audio/"
 
-    var colors = task_colors[sequence_type]
+    const colors = task_colors[sequence_type]
 
     function reminder_function() {
         let current_picks = jsPsych.data
@@ -113,6 +113,41 @@ function create_video_image_trial(sequence_type, video_url) {
 
     return (trial)
 }
+
+function create_audio_image_trial(box_urls, audio_url) {
+    const image_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/"
+    const audio_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/audio/"
+
+    const box_images = jsPsych.randomization.shuffle(box_urls)
+
+    function stimulus_function() {
+        return (
+            ` <div style="text-align: center;">
+<audio autoplay>
+<source src=${audio_url} type="audio/mp3">
+    </div> `
+        )
+    }
+
+    let trial = {
+        type: jsPsychHtmlButtonResponse,
+        stimulus: stimulus_function,
+        choices: box_images,
+        button_html: function(choice, choice_index) {
+            return (`<button class="jspsych-btn"><img src="${image_base_path}${choice}"}></button>`);
+        },
+        on_finish: function(data) {
+            data.response_label = box_images[data.response]
+            data.response_layout = box_images
+        }
+    }
+
+    return (trial)
+}
+
+const audio_trial_boxes = ["greenbox_8_bluered_alternating.png", "brownbox_8_greenpink_alternating.png"]
+var audio_trial = create_audio_image_trial(audio_trial_boxes, 'Audio11_Inclusion1_test.mp3')
+timeline.push(audio_trial)
 
 const Intro = [{
     type: jsPsychVideoButtonResponse,
@@ -273,7 +308,7 @@ const Inclusion1 = [{
     {
         type: jsPsychAudioButtonResponse,
         // stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie11_Inclusion1_test.mp4'],
-        stimulus: [audio_url_base + 'Audio11_Inclusion1_test.wav'],
+        stimulus: ['Audio11_Inclusion1_test.mp3'],
         choices: inclusion1_test_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
         width: "1024",
@@ -334,7 +369,7 @@ const Inclusion2 = [{
     {
         type: jsPsychAudioButtonResponse,
         // stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie14_Inclusion2_test.mp4'],
-        stimulus: [audio_url_base + 'Audio14_Inclusion2_test.wav'],
+        stimulus: ['Audio14_Inclusion2_test.mp3'],
         // choices: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/orange_button.png", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/purple_button.png"],
         choices: inclusion2_test_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
@@ -405,7 +440,7 @@ const Test1 = [{
     },
     {
         type: jsPsychAudioButtonResponse,
-        stimulus: [audio_url_base + 'Audio17_test_Test1.wav'],
+        stimulus: ['Audio17_test_Test1.mp3'],
         choices: test1_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
         width: "1024",
@@ -474,7 +509,7 @@ const Test2 = [{
     },
     {
         type: jsPsychAudioButtonResponse,
-        stimulus: [audio_url_base + 'Audio21_test_Test2.wav'],
+        stimulus: ['Audio21_test_Test2.mp3'],
         choices: test2_choices,
         button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
         width: "1024",
