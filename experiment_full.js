@@ -94,7 +94,7 @@ function create_video_image_trial(sequence_type, video_url) {
         )
     }
 
-    trial = {
+    let trial = {
         type: jsPsychHtmlButtonResponse,
         stimulus: stimulus_function,
         choices: colors,
@@ -121,7 +121,7 @@ const Intro = [{
 }, ];
 timeline = timeline.concat(Intro);
 
-var coin_demo = {
+const coin_demo = {
     type: jsPsychVideoButtonResponse,
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie2_Coin_demo.mp4'],
     choices: ["Next"],
@@ -131,7 +131,7 @@ var coin_demo = {
 }
 timeline.push(coin_demo)
 
-var coin_videos = [
+const coin_videos = [
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_1.mp4',
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_2.mp4',
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_3.mp4',
@@ -139,12 +139,12 @@ var coin_videos = [
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_5.mp4',
 ]
 
-for (vid_url of coin_videos) {
-    trial = create_video_image_trial("coin", vid_url)
+for (let vid_url of coin_videos) {
+    let trial = create_video_image_trial("coin", vid_url)
     timeline.push(trial)
 }
 
-var greatjob_coin = {
+const greatjob_coin = {
     type: jsPsychVideoButtonResponse,
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_1.mp4'],
     choices: ["Next"],
@@ -154,7 +154,7 @@ var greatjob_coin = {
 }
 timeline.push(greatjob_coin)
 
-var marble_demo = {
+const marble_demo = {
     type: jsPsychVideoButtonResponse,
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie4_Marble_demo.mp4'],
     choices: ["Next"],
@@ -164,7 +164,7 @@ var marble_demo = {
 }
 timeline.push(marble_demo)
 
-var marble_demo2 = {
+const marble_demo2 = {
     type: jsPsychVideoButtonResponse,
     stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie5_Marble_demo2.mp4'],
     choices: ["Next"],
@@ -174,7 +174,7 @@ var marble_demo2 = {
 }
 timeline.push(marble_demo2)
 
-marble_videos = [
+const marble_videos = [
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_1.mp4',
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_2.mp4',
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_3.mp4',
@@ -182,8 +182,8 @@ marble_videos = [
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_5.mp4'
 ]
 
-for (vid_url of marble_videos) {
-    trial = create_video_image_trial("marble", vid_url)
+for (let vid_url of marble_videos) {
+    let trial = create_video_image_trial("marble", vid_url)
     timeline.push(trial)
 }
 
@@ -215,8 +215,8 @@ const spinner_videos = ['https://raw.githubusercontent.com/nicolehope5/randomnes
     'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_5.mp4'
 ]
 
-for (vid_url of spinner_videos) {
-    trial = create_video_image_trial("spinner", vid_url)
+for (let vid_url of spinner_videos) {
+    let trial = create_video_image_trial("spinner", vid_url)
     timeline.push(trial)
 }
 
