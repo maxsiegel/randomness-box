@@ -114,7 +114,7 @@ function create_video_image_trial(sequence_type, video_url) {
     return (trial)
 }
 
-function create_audio_image_trial(box_urls, audio_url) {
+function create_audio_trial(box_urls, audio_url) {
     const image_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/"
     const audio_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/audio/"
 
@@ -124,7 +124,8 @@ function create_audio_image_trial(box_urls, audio_url) {
         return (
             ` <div style="text-align: center;">
 <audio autoplay>
-<source src=${audio_url} type="audio/mp3">
+<source src=${audio_base_path}${audio_url} type="audio/mp3">
+</audio>
     </div> `
         )
     }
@@ -144,10 +145,6 @@ function create_audio_image_trial(box_urls, audio_url) {
 
     return (trial)
 }
-
-const audio_trial_boxes = ["greenbox_8_bluered_alternating.png", "brownbox_8_greenpink_alternating.png"]
-var audio_trial = create_audio_image_trial(audio_trial_boxes, 'Audio11_Inclusion1_test.mp3')
-timeline.push(audio_trial)
 
 const Intro = [{
     type: jsPsychVideoButtonResponse,
@@ -270,8 +267,6 @@ const greatjob_spinner = {
 
 timeline.push(greatjob_spinner);
 
-const inclusion1_boxes = ["images/brownbox_8_yellow.png", "images/greenbox_3_bluepink.png"]
-const inclusion1_test_choices = jsPsych.randomization.shuffle(inclusion1_boxes)
 
 const Inclusion1 = [{
         type: jsPsychVideoButtonResponse,
@@ -304,37 +299,27 @@ const Inclusion1 = [{
         width: "1024",
         response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-    {
-        type: jsPsychAudioButtonResponse,
-        // stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie11_Inclusion1_test.mp4'],
-        stimulus: ['Audio11_Inclusion1_test.mp3'],
-        choices: inclusion1_test_choices,
-        button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
-        width: "1024",
-        response_allowed_while_playing: ALLOW_SKIPS,
-        margin_vertical: '-10px',
-        margin_horizontal: '200px',
-        on_finish: function(data) {
-            data.response_label = inclusion1_test_choices[data.response]
-            data.response_layout = inclusion1_test_choices
-        }
+    }
+]
 
-    },
-    {
-        type: jsPsychVideoButtonResponse,
-        stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4'],
-        choices: ["Next"],
-        width: "1024",
-        response_allowed_while_playing: ALLOW_SKIPS,
-        button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-];
+const inclusion1_boxes = ["brownbox_8_yellow.png", "greenbox_3_bluepink.png"]
+const inclusion1_audio_trial = create_audio_trial(inclusion1_boxes, "Audio11_Inclusion1_test.mp3")
+
+Inclusion1.push(inclusion1_audio_trial)
+
+Inclusion1.push({
+    type: jsPsychVideoButtonResponse,
+    stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4'],
+    choices: ["Next"],
+    width: "1024",
+    response_allowed_while_playing: ALLOW_SKIPS,
+    button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
+})
+
 timeline = timeline.concat(Inclusion1);
 
-const inclusion2_boxes = ["images/bluebox_3_purpleyellow.png", "images/redbox_8_green.png"]
-const inclusion2_test_choices = jsPsych.randomization.shuffle(inclusion2_boxes)
-const Inclusion2 = [{
+
+var Inclusion2 = [{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie12_Inclusionintro_2.mp4'],
         choices: ["Next"],
@@ -365,25 +350,13 @@ const Inclusion2 = [{
         width: "1024",
         response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-    {
-        type: jsPsychAudioButtonResponse,
-        // stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie14_Inclusion2_test.mp4'],
-        stimulus: ['Audio14_Inclusion2_test.mp3'],
-        // choices: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/orange_button.png", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/img/purple_button.png"],
-        choices: inclusion2_test_choices,
-        button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
-        width: "1024",
-        response_allowed_while_playing: ALLOW_SKIPS,
-        margin_vertical: '-10px',
-        margin_horizontal: '200px',
-        on_finish: function(data) {
-            data.response_label = inclusion2_test_choices[data.response]
-            data.response_layout = inclusion2_test_choices
-        }
+    }
+]
+const inclusion2_boxes = ["bluebox_3_purpleyellow.png", "redbox_8_green.png"]
+const inclusion2_audio_trial = create_audio_trial(inclusion2_boxes, "Audio14_Inclusion2_test.mp3")
+Inclusion2.push(inclusion2_audio_trial)
 
-    },
-    {
+Inclusion2 = Inclusion2.concat([{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4'],
         choices: ["Next"],
@@ -398,15 +371,12 @@ const Inclusion2 = [{
         width: "1024",
         response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-
-];
+    }
+])
 timeline = timeline.concat(Inclusion2);
 
-const test1_boxes = ["images/greenbox_8_bluered_alternating.png", "images/brownbox_8_greenpink_alternating.png"]
-const test1_choices = jsPsych.randomization.shuffle(test1_boxes)
 
-const Test1 = [{
+var Test1 = [{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie15_Test1_Intro.mp4'],
         choices: ["Next"],
@@ -437,22 +407,14 @@ const Test1 = [{
         width: "1024",
         response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-    {
-        type: jsPsychAudioButtonResponse,
-        stimulus: ['Audio17_test_Test1.mp3'],
-        choices: test1_choices,
-        button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
-        width: "1024",
-        response_allowed_while_playing: ALLOW_SKIPS,
-        margin_vertical: '-10px',
-        margin_horizontal: '200px',
-        on_finish: function(data) {
-            data.response_label = test1_choices[data.response]
-            data.response_layout = test1_choices
-        }
-    },
-    {
+    }
+]
+
+const test1_boxes = ["greenbox_8_bluered_alternating.png", "brownbox_8_greenpink_alternating.png"]
+const test1_audio_trial = create_audio_trial(test1_boxes, "Audio17_test_Test1.mp3")
+Test1.push(test1_audio_trial)
+
+Test1 = Test1.concat([{
         type: jsPsychVideoButtonResponse,
         stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4'],
         choices: ["Next"],
@@ -468,12 +430,9 @@ const Test1 = [{
         response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     },
+]);
 
-];
 timeline = timeline.concat(Test1);
-
-const test2_boxes = ["images/bluebox_8_purpleorange_alternating.png", "images/redbox_8_blueyellow_alternating.png"]
-const test2_choices = jsPsych.randomization.shuffle(test2_boxes)
 
 const Test2 = [{
         type: jsPsychVideoButtonResponse,
@@ -506,23 +465,13 @@ const Test2 = [{
         width: "1024",
         response_allowed_while_playing: ALLOW_SKIPS,
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-    {
-        type: jsPsychAudioButtonResponse,
-        stimulus: ['Audio21_test_Test2.mp3'],
-        choices: test2_choices,
-        button_html: (choice, choice_index) => `<button class="jspsych-btn" style="margin: 100px;"><img src="${choice}" width="150" height="150" alt="${choice}"></img></button>`,
-        width: "1024",
-        response_allowed_while_playing: ALLOW_SKIPS,
-        margin_vertical: '-10px',
-        margin_horizontal: '200px',
-        on_finish: function(data) {
-            data.response_label = test2_choices[data.response]
-            data.response_layout = test2_choices
-        }
-    },
-];
-timeline = timeline.concat(Test2);
+    }
+]
+
+const test2_boxes = ["bluebox_8_purpleorange_alternating.png", "redbox_8_blueyellow_alternating.png"]
+const test2_audio_trial = create_audio_trial(test2_boxes, "Audio21_test_Test2.mp3")
+
+Test2.push(test2_audio_trial)
 
 const Exploration = [{
         type: jsPsychVideoButtonResponse,
