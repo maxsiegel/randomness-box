@@ -1,16 +1,11 @@
 const jsPsych = initJsPsych({
-    on_finish: function() {
 
-        if (ALLOW_SKIPS) {
-            jsPsych.data.displayData('csv');
-        }
-    }
-});
+})
 
 
 let timeline = [];
 
-var ALLOW_SKIPS = true;
+var ALLOW_SKIPS = false;
 
 if (!ALLOW_SKIPS) {
     const video_config = {
@@ -43,11 +38,14 @@ if (!ALLOW_SKIPS) {
         video: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie1_Intro.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie2_Coin_demo.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_1.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_2.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_3.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_4.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_5.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_1.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie4_Marble_demo.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie5_Marble_demo2.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_1.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_2.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_3.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_4.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_5.mp4", 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_2.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie7_Spinner_demo.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_1.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_2.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_3.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_4.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_5.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GoodJob_3.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie9_Inclusionintro_1.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie10_Inclusion1a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie11_Inclusion1b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie12_Inclusionintro_2.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie13_Inclusion2a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie14_Inclusion2b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_4.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie15_Test1_Intro.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie16_Test1a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie17_Test1b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_5.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie18_Test2_Intro.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie19_Test2a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie20_Test2b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Exploration.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_6.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/End.mp4'],
     };
 }
+
 const welcome = {
     type: jsPsychHtmlButtonResponse,
     stimulus: "Welcome! Click the button to begin.",
-    choices: ["Start"]
+    choices: ["Start"],
+
 };
+
 timeline.push(welcome);
 
 const instructions = [{
@@ -99,11 +97,11 @@ function create_video_image_trial(sequence_type, video_url) {
     function stimulus_function() {
         return (
             ` <div style="text-align: center;">
-      <img src=${reminder_function()} style="max-width:400px; display:block; margin:auto;"/>
-      <video id="stimvid" width="1000" height="auto" autoplay>
-        <source src=${video_url} type="video/mp4">
-      </video>
-    </div> `
+          <img src=${reminder_function()} style="max-width:400px; display:block; margin:auto;"/>
+          <video id="stimvid" width="1000" height="auto" autoplay>
+            <source src=${video_url} type="video/mp4">
+          </video>
+        </div> `
         )
     }
 
@@ -145,10 +143,11 @@ function create_audio_trial(box_urls, audio_url) {
     function stimulus_function() {
         return (
             ` <div style="text-align: center;">
-<audio id="stimaud" autoplay>
-<source src=${audio_base_path}${audio_url} type="audio/mp3">
-</audio>
-    </div> `
+    <audio id="stimaud" autoplay>
+
+    <source src=${audio_base_path}${audio_url} type="audio/mp3">
+    </audio>
+        </div> `
         )
     }
 
@@ -187,7 +186,6 @@ function create_audio_trial(box_urls, audio_url) {
 
             }
         },
-
         on_load: function() {
             let aud = document.getElementById('stimaud');
             let btns = document.querySelectorAll('.jspsych-btn');
@@ -196,6 +194,7 @@ function create_audio_trial(box_urls, audio_url) {
                 btns.forEach(b => b.removeAttribute('disabled'));
             };
         },
+
         on_finish: function(data) {
             data.response_label = box_images[data.response]
             data.response_layout = box_images
@@ -535,22 +534,13 @@ Test2.push(test2_audio_trial)
 timeline = timeline.concat(Test2);
 
 const Exploration = [{
-        type: jsPsychVideoButtonResponse,
-        stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Exploration.mp4'],
-        choices: ["Next"],
-        width: "1024",
-        response_allowed_while_playing: ALLOW_SKIPS,
-        button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-    {
-        type: jsPsychVideoButtonResponse,
-        stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_6.mp4'],
-        choices: ["Next"],
-        width: "1024",
-        response_allowed_while_playing: ALLOW_SKIPS,
-        button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
-    },
-];
+    type: jsPsychVideoButtonResponse,
+    stimulus: ['https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Exploration.mp4'],
+    choices: ["Next"],
+    width: "1024",
+    response_allowed_while_playing: ALLOW_SKIPS,
+    button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
+}];
 timeline = timeline.concat(Exploration);
 
 
@@ -572,15 +562,7 @@ if (!ALLOW_SKIPS) {
 }
 const site = '<a href="https://eccl.mit.edu">https://www.eccl.mit.edu</a>';
 
-const debrief_string = `Children are remarkably good at noticing structure in the world. They can track how a ball moves when thrown, recognize things that are likely or unlikely to happen, and detect patterns in everyday events (for example, the changing colors of leaves in the fall).
-In this study, we were interested in how children think about situations that don’t have an obvious structure — that is, random events. To explore this, we used three kinds of activities: coin flips, marbles falling out of a box, and spins of a spinner.
-Part 1: We showed your child short sequences of random events and asked them to make their own guesses about the outcomes. We were curious whether children’s guesses would look random (e.g., HTHHT) or whether they might build in patterns, such as strict alternation (e.g., HTHTH).
-
-
-Parts 2 & 3: We asked your child to identify a “tricky box.” Sometimes the tricky box always produced the same color (a biased outcome). Other times the tricky box produced an alternating sequence, which looks patterned and therefore also “tricky.” Even if children create alternating sequences themselves when guessing, they might still view an alternating outcome as surprising or suspicious — which tells us something important about how they understand randomness.
-
-
-By comparing children’s responses across these tasks, we hope to better understand how children reason about randomness — both when they generate it and when they evaluate it.`
+const debrief_string = "Children are remarkably good at noticing structure in the world. They can track how a ball moves when thrown, recognize things that are likely or unlikely to happen, and detect patterns in everyday events (for example, the changing colors of leaves in the fall). In this study, we were interested in how children think about situations that don’t have an obvious structure — that is, random events. To explore this, we used three kinds of activities: coin flips, marbles falling out of a box, and spins of a spinner. <br><br>Part 1: We showed your child short sequences of random events and asked them to make their own guesses about the outcomes. We were curious whether children’s guesses would look random (e.g., HTHHT) or whether they might build in patterns, such as strict alternation (e.g., HTHTH). <br><br>Parts 2 & 3: We asked your child to identify a “tricky box.” Sometimes the tricky box always produced the same color (a biased outcome). Other times the tricky box produced an alternating sequence, which looks patterned and therefore also “tricky.” Even if children create alternating sequences themselves when guessing, they might still view an alternating outcome as surprising or suspicious — which tells us something important about how they understand randomness. <br><br>By comparing children’s responses across these tasks, we hope to better understand how children reason about randomness — both when they generate it and when they evaluate it.<br><br> If you want to learn more about studies similar to this one, please visit our lab website at " + site + "<br><br><br><b><center>The experiment is complete. Thank you for participating! You will receive an email from Lookit with your payment information. Please click the 'End' button to end this study.</center></b>";
 
 
 const debrief = {
@@ -601,5 +583,4 @@ if (!ALLOW_SKIPS) {
     timeline.push(stop);
 }
 // console.log(timeline);
-
 jsPsych.run(timeline);
