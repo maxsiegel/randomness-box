@@ -1,4 +1,12 @@
-const jsPsych = initJsPsych();
+const jsPsych = initJsPsych({
+    on_finish: function() {
+
+        if (ALLOW_SKIPS) {
+            jsPsych.data.displayData('csv');
+        }
+    }
+});
+
 
 let timeline = [];
 
@@ -178,6 +186,14 @@ function create_audio_trial(box_urls, audio_url) {
                 return (`<button class="jspsych-btn" style="padding:0; margin:0 ${GAP}px; border:none; background:transparent;" disabled><img src="${image_base_path}${choice}" alt="choice ${choice_index+1}" height="${IMG}px" style="display:block;"/></button>`);
 
             }
+        },
+
+        on_load: function() {
+            let btns = document.querySelectorAll('.jspsych-btn');
+            // enable buttons only after video ends
+            vid.onended = function() {
+                btns.forEach(b => b.removeAttribute('disabled'));
+            };
         },
         on_finish: function(data) {
             data.response_label = box_images[data.response]
@@ -584,4 +600,5 @@ if (!ALLOW_SKIPS) {
     timeline.push(stop);
 }
 // console.log(timeline);
+
 jsPsych.run(timeline);
