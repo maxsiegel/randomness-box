@@ -165,17 +165,17 @@ function create_audio_trial(box_urls, audio_url) {
     // return (trial)
     //}
 
-    const IMG = 120; // <-- set the size you want (px)
-    const GAP = 8; // optional spacing between buttons
+    const IMG = 300; // <-- set the size you want (px)
+    const GAP = 50; // optional spacing between buttons
     let trial = {
         type: jsPsychHtmlButtonResponse,
         stimulus: stimulus_function,
         choices: box_images,
         button_html: function(choice, choice_index) {
             if (ALLOW_SKIPS) {
-                return (`<button class="jspsych-btn" style="padding:0; margin:0 ${GAP}px; border:none; background:transparent;"><img src="${image_base_path}${choice}"alt="choice ${choice_index+1}"width="${IMG}" height="${IMG}"style="display:block;"/></button>`);
+                return (`<button class="jspsych-btn" style="padding:0; margin:0 ${GAP}px; border:none; background:transparent;"><img src="${image_base_path}${choice}" alt="choice ${choice_index+1}" height="${IMG}px" style="display:block;"/></button>`);
             } else {
-                return (`<button class="jspsych-btn" style="padding:0; margin:0 ${GAP}px; border:none; background:transparent;" disabled><img src="${image_base_path}${choice}"alt="choice ${choice_index+1}"width="${IMG}" height="${IMG}"style="display:block;"/></button>`);
+                return (`<button class="jspsych-btn" style="padding:0; margin:0 ${GAP}px; border:none; background:transparent;" disabled><img src="${image_base_path}${choice}" alt="choice ${choice_index+1}" height="${IMG}px" style="display:block;"/></button>`);
 
             }
         },
@@ -395,7 +395,7 @@ var Inclusion2 = [{
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-3/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`
     }
 ]
-const inclusion2_boxes = ["bluebox_3_purpleyellow.png", "redbox_8_green.png"]
+const inclusion2_boxes = ["bluebox_3_purpleyellow_updated.png", "redbox_8_green_updated.png"]
 const inclusion2_audio_trial = create_audio_trial(inclusion2_boxes, "Audio14_Inclusion2_test.mp3")
 Inclusion2.push(inclusion2_audio_trial)
 
