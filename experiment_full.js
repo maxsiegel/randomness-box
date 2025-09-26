@@ -145,7 +145,7 @@ function create_audio_trial(box_urls, audio_url) {
     function stimulus_function() {
         return (
             ` <div style="text-align: center;">
-<audio autoplay>
+<audio id="stimaud" autoplay>
 <source src=${audio_base_path}${audio_url} type="audio/mp3">
 </audio>
     </div> `
@@ -189,9 +189,10 @@ function create_audio_trial(box_urls, audio_url) {
         },
 
         on_load: function() {
+            let aud = document.getElementById('stimaud');
             let btns = document.querySelectorAll('.jspsych-btn');
             // enable buttons only after video ends
-            vid.onended = function() {
+            aud.onended = function() {
                 btns.forEach(b => b.removeAttribute('disabled'));
             };
         },
