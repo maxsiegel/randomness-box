@@ -16,8 +16,8 @@ if (!ALLOW_SKIPS) {
         institution: "Massachusetts Institute of Technology",
         PIContact: "Laura Schulz (contact: nhcoates@mit.edu)",
         payment: "After you finish the study, we will email you a $5 Amazon.com gift card within approximately 10 days from completing the study. To be eligible for the gift card your child must be in the age range for this study, you need to submit a valid consent statement, and we need to see that there is a child with you. But we will send a gift card even if you do not finish the whole study or we are not able to use your child's data! There are no other direct benefits to you or your child from participating, but we hope you will enjoy the experience.",
-        procedures: "In this study, you and your child will see six stories involving things that change over time! Each time, you and your child will listen to a scenario and pick and then pick what two things change in the same way!",
-        purpose: "Previous research suggests that children use features like color, shape, or number to learn about what makes objects different from each other. Now, we are studying whether children can do the same thing to make predictions-- do patterns in one domain (e.g., swings swinging or a ball toss) match patterns in another domain (e.g., flowers blooming outward)? We think the specific kinds of patterns (or functions) that kids pay attention to may tell us something about how both kids and adults understand and see patterns in the real world.",
+        procedures: "In this study your child will first make guesses about the outcome of coin flips, color wheels and spinners. Then your child will answer questions about marbles that fell out of a box after shaking the box a few times.",
+        purpose: "Previous research has shown that both children and adults show systematic similarities when generating sequences from random samples. Now, we are studying whether, even if children generate patterned sequences (e.g., alternating HT), they might also find the outcome of alternation surprising when judging outcomes that have already been generated. We hope to further understand children’s understanding of randomness, and explore their reasoning about randomness in different contexts.",
         research_rights_statement: "You are not waiving any legal claims, rights or remedies because of your participation in this research study.  If you feel you have been treated unfairly, or you have questions regarding your rights as a research subject, you may contact the Committee On the Use of Humans as Experimental Subjects (COUHES), Massachusetts of Technology, 77 Massachusetts Avenue Cambridge, MA 02139 (contact: couhes@mit.edu)",
     };
     timeline.push(video_consent);
@@ -29,9 +29,10 @@ if (!ALLOW_SKIPS) {
 
     const preload = {
         type: jsPsychPreload,
-        images: ["https://github.com/nicolehope5/Alien-Greenhouse-3/raw/refs/heads/main/img/purplearrow.png", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-Functions/refs/heads/main/img/left_blue.png", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-Functions/refs/heads/main/img/right_red.png", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/img/red_left.png", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/img/blue_right.png"],
+        images: ["https://github.com/nicolehope5/Alien-Greenhouse-3/raw/refs/heads/main/img/purplearrow.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/bluebox_8_purpleorange_alternating_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/redbox_8_blueyellow_alternating_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/redbox_8_blueyellow_alternating_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/greenbox_8_bluered_alternating_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/brownbox_8_greenpink_alternating_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/brownbox_8_greenpink_alternating_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/greenbox_3_bluepink_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/brownbox_8_yellow_updated.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/bluebox_3_purpleyellow.png", "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/redbox_8_green.png"],
 
-        video: ["https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie1_Welcome.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie2_Change.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie3_EachQuestion.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie4_Inclusion.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie6_ReadyToStart.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie7_red_linear_setup.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie8_red_linear_setup2.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie9_red_linear_test.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie10_yellow_linear_setup.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie11_yellow_linear_setup2.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie12_yellow_linear_test.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie13_sab_ushape_setup.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie14_sab_ushape_setup2.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie15_sab_ushape_test.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie16_nic_ushape_setup.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie17_nic_ushape_setup2.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie18_nic_ushape_test.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie19_nic_periodic_setup.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie20_nic_periodic_setup2.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie21_nic_periodic_test.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie22_sab_periodic_setup.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie23_sab_periodic_setup2.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie24_sab_periodic_test.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/halfway.mp4", "https://raw.githubusercontent.com/nicolehope5/Alien-Greenhouse-6/refs/heads/main/mp4/Movie25_Done.mp4"]
+
+        video: ["https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie1_Intro.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie2_Coin_demo.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_1.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_2.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_3.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_4.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie3_CoinFlip_5.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_1.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie4_Marble_demo.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie5_Marble_demo2.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_1.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_2.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_3.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_4.mp4", "https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie6_Marble_5.mp4", 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_2.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie7_Spinner_demo.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_1.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_2.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_3.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_4.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie8_Spinner_5.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GoodJob_3.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie9_Inclusionintro_1.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie10_Inclusion1a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie11_Inclusion1b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie12_Inclusionintro_2.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie13_Inclusion2a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie14_Inclusion2b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_4.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie15_Test1_Intro.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie16_Test1a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie17_Test1b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Explore_Pile.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_5.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie18_Test2_Intro.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie19_Test2a_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/NextBox.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Movie20_Test2b_videos.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/Exploration.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/GreatJob_6.mp4', 'https://raw.githubusercontent.com/nicolehope5/randomness-study1/refs/heads/main/mp4/End.mp4'],
     };
 }
 const welcome = {
@@ -143,15 +144,39 @@ function create_audio_trial(box_urls, audio_url) {
         )
     }
 
+
+    //   let trial = {
+    //      type: jsPsychHtmlButtonResponse,
+    //      stimulus: stimulus_function,
+    //      choices: box_images,
+    //      button_html: function(choice, choice_index) {
+    //          if (ALLOW_SKIPS) {
+    //return (`<button class="jspsych-btn"><img src="${image_base_path}${choice}"}></button>`);
+    //          } else {
+    //              return (`<button class="jspsych-btn" disabled><img src="${image_base_path}${choice}"}></button>`);
+    //          }
+    //      },
+    //      on_finish: function(data) {
+    //         data.response_label = box_images[data.response]
+    //         data.response_layout = box_images
+    //     }
+    // }
+
+    // return (trial)
+    //}
+
+    const IMG = 120; // <-- set the size you want (px)
+    const GAP = 8; // optional spacing between buttons
     let trial = {
         type: jsPsychHtmlButtonResponse,
         stimulus: stimulus_function,
         choices: box_images,
         button_html: function(choice, choice_index) {
             if (ALLOW_SKIPS) {
-                return (`<button class="jspsych-btn"><img src="${image_base_path}${choice}"}></button>`);
+                return (`<button class="jspsych-btn" style="padding:0; margin:0 ${GAP}px; border:none; background:transparent;"><img src="${image_base_path}${choice}"alt="choice ${choice_index+1}"width="${IMG}" height="${IMG}"style="display:block;"/></button>`);
             } else {
-                return (`<button class="jspsych-btn" disabled><img src="${image_base_path}${choice}"}></button>`);
+                return (`<button class="jspsych-btn" style="padding:0; margin:0 ${GAP}px; border:none; background:transparent;" disabled><img src="${image_base_path}${choice}"alt="choice ${choice_index+1}"width="${IMG}" height="${IMG}"style="display:block;"/></button>`);
+
             }
         },
         on_finish: function(data) {
@@ -159,9 +184,10 @@ function create_audio_trial(box_urls, audio_url) {
             data.response_layout = box_images
         }
     }
-
     return (trial)
 }
+
+
 
 const Intro = [{
     type: jsPsychVideoButtonResponse,
@@ -319,7 +345,7 @@ const Inclusion1 = [{
     }
 ]
 
-const inclusion1_boxes = ["brownbox_8_yellow.png", "greenbox_3_bluepink.png"]
+const inclusion1_boxes = ["brownbox_8_yellow_updated.png", "greenbox_3_bluepink_updated.png"]
 const inclusion1_audio_trial = create_audio_trial(inclusion1_boxes, "Audio11_Inclusion1_test.mp3")
 
 Inclusion1.push(inclusion1_audio_trial)
@@ -427,7 +453,7 @@ var Test1 = [{
     }
 ]
 
-const test1_boxes = ["greenbox_8_bluered_alternating.png", "brownbox_8_greenpink_alternating.png"]
+const test1_boxes = ["greenbox_8_bluered_alternating_updated.png", "brownbox_8_greenpink_alternating_updated.png"]
 const test1_audio_trial = create_audio_trial(test1_boxes, "Audio17_test_Test1.mp3")
 Test1.push(test1_audio_trial)
 
@@ -485,10 +511,11 @@ const Test2 = [{
     }
 ]
 
-const test2_boxes = ["bluebox_8_purpleorange_alternating.png", "redbox_8_blueyellow_alternating.png"]
+const test2_boxes = ["bluebox_8_purpleorange_alternating_updated.png", "redbox_8_blueyellow_alternating_updated.png"]
 const test2_audio_trial = create_audio_trial(test2_boxes, "Audio21_test_Test2.mp3")
 
 Test2.push(test2_audio_trial)
+timeline = timeline.concat(Test2);
 
 const Exploration = [{
         type: jsPsychVideoButtonResponse,
@@ -528,7 +555,15 @@ if (!ALLOW_SKIPS) {
 }
 const site = '<a href="https://eccl.mit.edu">https://www.eccl.mit.edu</a>';
 
-const debrief_string = "Many natural phenomena that children experience in their daily lives follow structured functional forms, like the ones we showed your child today. For instance, when we let go of a helium balloon, it goes up linearly. <br><br>When we throw a ball in the air and catch it as it comes back down, its trajectory follows an uspide-down U-shape function. When we swing on a swing, the motion follows a periodic function as it goes back and forth. <br><br>These motions can be mapped on other objects or other phenomena that follow the same functions, like the flowers we also showed your child today. For instnace, one set of flowers started off closed and then gradually opened (linear function). One set of flowers started closed, then gradually opened and then closed again (upside U-shape), and one set of flosers started open and then gradually closed and opened again a few times (periodic function). <br><br><br><br>On each test trial, children saw either the ball being thrown and caught, the balloon going up or the swing going back and forth, and then a contrast between sets of flowers displaying two different functions. We wanted to know if children would match the function of the ball, the balloon or the swing onto the function of one of the flowers. <br><br><br><br>This early sensitivity to different functions might contribute to how in our culture, scientists can use abstract functions to represent all kinds of different phenomena-- from changes in the economy to changes in the population of migratory birds to changes in rainfall.<br><br> If you want to learn more about studies similar to this one, please visit our lab website at " + site + "<br><br><br><b><center>The experiment is complete. Thank you for participating! You will receive an email from Lookit with your payment information. Please click the 'End' button to end this study.</center></b>";
+const debrief_string = `Children are remarkably good at noticing structure in the world. They can track how a ball moves when thrown, recognize things that are likely or unlikely to happen, and detect patterns in everyday events (for example, the changing colors of leaves in the fall).
+In this study, we were interested in how children think about situations that don’t have an obvious structure — that is, random events. To explore this, we used three kinds of activities: coin flips, marbles falling out of a box, and spins of a spinner.
+Part 1: We showed your child short sequences of random events and asked them to make their own guesses about the outcomes. We were curious whether children’s guesses would look random (e.g., HTHHT) or whether they might build in patterns, such as strict alternation (e.g., HTHTH).
+
+
+Parts 2 & 3: We asked your child to identify a “tricky box.” Sometimes the tricky box always produced the same color (a biased outcome). Other times the tricky box produced an alternating sequence, which looks patterned and therefore also “tricky.” Even if children create alternating sequences themselves when guessing, they might still view an alternating outcome as surprising or suspicious — which tells us something important about how they understand randomness.
+
+
+By comparing children’s responses across these tasks, we hope to better understand how children reason about randomness — both when they generate it and when they evaluate it.`
 
 
 const debrief = {
