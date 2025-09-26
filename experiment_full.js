@@ -4,7 +4,7 @@ let timeline = [];
 
 var ALLOW_SKIPS = true;
 
-if (false) {
+if (!ALLOW_SKIPS) {
     const video_config = {
         type: chsRecord.VideoConfigPlugin
     };
@@ -46,12 +46,14 @@ const instructions = [{
         stimulus: "This study requires your browser to be in Full Screen. Please put your browser in Full Screen mode now.",
         choices: ["Next"],
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://github.com/nicolehope5/Alien-Greenhouse-3/raw/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`,
+        response_allowed_while_playing: ALLOW_SKIPS,
     },
     {
         type: jsPsychHtmlButtonResponse,
         stimulus: "During this study, your child will look at videos and listen to descriptions of scenes.  <br><br>After each video, your child will be asked to make a guess about what happened in the scene.  <br><br>If your child cannot click on the answer, have them point and you can click for them. <br><br>Please do not add any additional explanations to the story, and try not to influence your child's answer.  <br><br>There is no right answer, we're just interested in how children of this age think!<br><br><br>",
         choices: ["Next"],
         button_html: (choice, choice_index) => `<button class="jspsych-btn"><img src="https://github.com/nicolehope5/Alien-Greenhouse-3/raw/refs/heads/main/img/purplearrow.png" alt="${choice}"></img></button>`,
+        response_allowed_while_playing: ALLOW_SKIPS,
     }
 ];
 timeline = timeline.concat(instructions);
@@ -65,7 +67,6 @@ var task_colors = {
 
 function create_video_image_trial(sequence_type, video_url) {
     const image_base_path = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/images/"
-    const audio_url_base = "https://raw.githubusercontent.com/maxsiegel/randomness-box/refs/heads/master/audio/"
 
     const colors = task_colors[sequence_type]
 
@@ -90,7 +91,7 @@ function create_video_image_trial(sequence_type, video_url) {
         return (
             ` <div style="text-align: center;">
       <img src=${reminder_function()} style="max-width:400px; display:block; margin:auto;"/>
-      <video width="1000" height="auto" autoplay muted controls>
+      <video id="stimvid" width="1000" height="auto" autoplay>
         <source src=${video_url} type="video/mp4">
       </video>
     </div> `
@@ -102,7 +103,19 @@ function create_video_image_trial(sequence_type, video_url) {
         stimulus: stimulus_function,
         choices: colors,
         button_html: function(choice, choice_index) {
-            return (`<button class="jspsych-btn"><img src="${image_base_path}one_${choice}_marble.png"}></button>`);
+            if (ALLOW_SKIPS) {
+                return (`<button class="jspsych-btn"><img src="${image_base_path}one_${choice}_marble.png"}></button>`);
+            } else {
+                return (`<button class="jspsych-btn" disabled><img src="${image_base_path}one_${choice}_marble.png"}></button>`);
+            }
+        },
+        on_load: function() {
+            let vid = document.getElementById('stimvid');
+            let btns = document.querySelectorAll('.jspsych-btn');
+            // enable buttons only after video ends
+            vid.onended = function() {
+                btns.forEach(b => b.removeAttribute('disabled'));
+            };
         },
         on_finish: function(data) {
             data.sequence_type = sequence_type
@@ -135,7 +148,11 @@ function create_audio_trial(box_urls, audio_url) {
         stimulus: stimulus_function,
         choices: box_images,
         button_html: function(choice, choice_index) {
-            return (`<button class="jspsych-btn"><img src="${image_base_path}${choice}"}></button>`);
+            if (ALLOW_SKIPS) {
+                return (`<button class="jspsych-btn"><img src="${image_base_path}${choice}"}></button>`);
+            } else {
+                return (`<button class="jspsych-btn" disabled><img src="${image_base_path}${choice}"}></button>`);
+            }
         },
         on_finish: function(data) {
             data.response_label = box_images[data.response]
@@ -503,7 +520,7 @@ const End = [{
 }, ];
 timeline = timeline.concat(End);
 
-if (false) {
+if (!ALLOW_SKIPS) {
     const exitSurvey = {
         type: chsSurvey.ExitSurveyPlugin
     };
@@ -524,7 +541,7 @@ const debrief = {
 
 timeline.push(debrief);
 
-if (false) {
+if (!ALLOW_SKIPS) {
     const stop = {
         type: chsRecord.StopRecordPlugin
     };
